@@ -71,6 +71,7 @@ public class PlayerManager : MonoBehaviour
 
     private void winGame()
     {
+        GameScore.save = true;
         if (win == true)
         {
             player.velocity = new Vector2(0, player.velocity.y);
