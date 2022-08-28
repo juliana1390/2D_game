@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Shot : MonoBehaviour
 {
-	/*void Start()
-	{
-		GetComponent<Rigidbody2D>().AddForce(transform.left * 1000);
-		Destroy(gameObject, 2);
-	}*/
     private Rigidbody2D shot;
 	
     public int speed;
@@ -26,7 +21,6 @@ public class Shot : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-		
         if (col.gameObject.layer == 8)
         {
             Destroy(this.gameObject);
