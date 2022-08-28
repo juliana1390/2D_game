@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -71,11 +72,19 @@ public class PlayerManager : MonoBehaviour
 
     private void winGame()
     {
-        GameScore.save = true;
+        
         if (win == true)
         {
+			GameScore.save = true;
             player.velocity = new Vector2(0, player.velocity.y);
             winPanel.transform.position = Vector2.MoveTowards(winPanel.transform.position, cameraPos.transform.position, winSpeed * Time.deltaTime);
+			//PlayerPrefs.SetInt("atualFase", SceneManager.GetActiveScene().buildIndex);
+			if(SceneManager.GetActiveScene().buildIndex > PlayerPrefs.GetInt("completedFase"))
+			{
+				PlayerPrefs.SetInt("completedFase", SceneManager.GetActiveScene().buildIndex);
+				PlayerPrefs.Save();
+			}
+			Timer.stopTime = true;
         }
     }
 }
