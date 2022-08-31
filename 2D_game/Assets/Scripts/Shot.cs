@@ -7,7 +7,8 @@ public class Shot : MonoBehaviour
     [SerializeField] 
     private GameObject particle;
     private Rigidbody2D shot;
-    public int speed;
+    [SerializeField]
+    private int speed;
     // Start is called before the first frame update
     void Start()
     {

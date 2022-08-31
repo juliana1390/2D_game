@@ -51,7 +51,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("armadilhas") == true)
+        if (col.CompareTag("traps") == true)
         {
             restartPlayer = true;
         }
@@ -67,6 +67,8 @@ public class PlayerManager : MonoBehaviour
         {
             player.transform.position = new Vector2(initialPos.transform.position.x, initialPos.transform.position.y);
             restartPlayer = false;
+            GameScore.highScore = PlayerPrefs.GetInt("highscore", 0);
+            
         }
     }
 
@@ -75,16 +77,18 @@ public class PlayerManager : MonoBehaviour
         
         if (win == true)
         {
-			GameScore.save = true;
+			//GameScore.save = true;
             player.velocity = new Vector2(0, player.velocity.y);
             winPanel.transform.position = Vector2.MoveTowards(winPanel.transform.position, cameraPos.transform.position, winSpeed * Time.deltaTime);
-			//PlayerPrefs.SetInt("atualFase", SceneManager.GetActiveScene().buildIndex);
+			//PlayerPrefs.SetInt("currentFase", SceneManager.GetActiveScene().buildIndex);
 			if(SceneManager.GetActiveScene().buildIndex > PlayerPrefs.GetInt("completedFase"))
 			{
 				PlayerPrefs.SetInt("completedFase", SceneManager.GetActiveScene().buildIndex);
 				PlayerPrefs.Save();
 			}
 			Timer.stopTime = true;
+            GameScore.score = 0;
+
         }
     }
 }
