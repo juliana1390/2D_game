@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MoveTrap : MonoBehaviour
 {
-    public float sawSpeed;
+	[SerializeField]
+    private float sawSpeed;
     private float z;
-    public GameObject point1, point2;
+    [SerializeField]
+	private GameObject point1, point2;
     private Vector2 nextPos;
     // Start is called before the first frame update
     void Start()

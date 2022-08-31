@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Shot : MonoBehaviour
 {
+    [SerializeField] 
+    private GameObject particle;
     private Rigidbody2D shot;
-	
     public int speed;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,12 @@ public class Shot : MonoBehaviour
     {
         if (col.gameObject.layer == 8)
         {
+            spawnerParticle();
             Destroy(this.gameObject);
         }
+    }
+    void spawnerParticle()
+    {
+        Instantiate(particle, transform.position, Quaternion.identity);
     }
 }
